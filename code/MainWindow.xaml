@@ -1,0 +1,189 @@
+﻿<Window x:Class="Writer2.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" Title="Writer2" Height="788" Width="1024" WindowStartupLocation="CenterScreen" Icon="TextEditor3.ico" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" >
+    <DockPanel Margin="0" LastChildFill="False">
+        <Menu Padding="4" DockPanel.Dock="Top">
+            <MenuItem x:Name="FileMenuItem" Header="_File">
+                <MenuItem x:Name="FileNewMenuItem" Header="_New" InputGestureText="Ctrl+N" Click="FileNewMenuItem_Click">
+                </MenuItem>
+                <MenuItem x:Name="FileOpenMenuItem" Header="_Open" InputGestureText="Ctrl+O" Click="FileOpenMenuItem_Click">
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="FileSaveMenuItem" Header="_Save" InputGestureText="Ctrl+S" Click="FileSaveMenuItem_Click">
+                </MenuItem>
+                <MenuItem x:Name="FileSaveAsMenuItem" Header="Save _As..." InputGestureText="Ctrl+Shift+S" Click="FileSaveAsMenuItem_Click">
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="FileExitMenuItem" Header="E_xit" InputGestureText="Alt+F4" Click="FileExitMenuItem_Click">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="EditMenuItem" Header="_Edit">
+                <MenuItem x:Name="EditUndoMenuItem" Header="_Undo" InputGestureText="Ctrl+Z" Click="EditUndoMenuItem_Click">
+                </MenuItem>
+                <MenuItem x:Name="EditRedoMenuItem" Header="_Redo" InputGestureText="Ctrl+Y" Click="EditRedoMenuItem_Click">
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="EditCutMenuItem" Header="Cu_t" InputGestureText="Ctrl+X" Click="EditCutMenuItem_Click">
+                </MenuItem>
+                <MenuItem x:Name="EditCopyMenuItem" Header="_Copy" InputGestureText="Ctrl+C" Click="EditCopyMenuItem_Click">
+                </MenuItem>
+                <MenuItem x:Name="EditPasteMenuItem" Header="_Paste" InputGestureText="Ctrl+V" Click="EditPasteMenuItem_Click">
+                </MenuItem>
+                <MenuItem x:Name="EditDeleteMenuItem" Header="_Delete" InputGestureText="Del" Click="EditDeleteMenuItem_Click">
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="EditSelectAllMenuItem" Header="Select _All" InputGestureText="Ctrl+A" Click="EditSelectAllMenuItem_Click">
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="EditSetFontMenuItem" Header="Set _Font">
+                    <MenuItem x:Name="EditSetFontStyleMenuItem" Header="_Style">
+                        <MenuItem x:Name="EditSetFontStyleBoldMenuItem" Header="_Bold" InputGestureText="Ctrl+B" Click="EditSetFontStyleBoldMenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetFontStyleItalicMenuItem" Header="_Italic" InputGestureText="Ctrl+I" Click="EditSetFontStyleItalicMenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetFontStyleUnderlineMenuItem" Header="_Underline" InputGestureText="Ctrl+U" Click="EditSetFontStyleUnderlineMenuItem_Click">
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem x:Name="EditSetFontStyleDefaultMenuItem" Header="_Default" InputGestureText="Ctrl+D" Click="EditSetFontStyleDefaultMenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetFontStyleHeading1MenuItem" Header="Heading _1 (Title)" InputGestureText="Ctrl+Shift+1" Click="EditSetFontStyleHeading1MenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetFontStyleHeading2MenuItem" Header="Heading _2 (Part)" InputGestureText="Ctrl+Shift+2" Click="EditSetFontStyleHeading2MenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetFontStyleHeading3MenuItem" Header="Heading _3 (Chapter)" InputGestureText="Ctrl+Shift+3" Click="EditSetFontStyleHeading3MenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetFontStyleHeading4MenuItem" Header="Heading _4 (Subchapter)" InputGestureText="Ctrl+Shift+4" Click="EditSetFontStyleHeading4MenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetFontStyleCodeMenuItem" Header="_Monospace (Code)" InputGestureText="Ctrl+M" Click="EditSetFontStyleCodeMenuItem_Click">
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem x:Name="EditSetFontColorMenuItem" Header="_Color">
+                        <MenuItem x:Name="EditSetFontColorForegroundMenuItem" Header="_Foreground">
+                            <MenuItem x:Name="EditSetFontColorForegroundBlackMenuItem" Header="Blac_k" Click="EditSetFontColorForegroundBlackMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundWhiteMenuItem" Header="_White" Click="EditSetFontColorForegroundWhiteMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundRedMenuItem" Header="Red" Click="EditSetFontColorForegroundRedMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundDarkRedMenuItem" Header="Dark Red" Click="EditSetFontColorForegroundDarkRedMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundGreenMenuItem" Header="Green" Click="EditSetFontColorForegroundGreenMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundDarkGreenMenuItem" Header="Dark Green" Click="EditSetFontColorForegroundDarkGreenMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundYellowMenuItem" Header="Yellow" Click="EditSetFontColorForegroundYellowMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundGreenYellowMenuItem" Header="Dark Yellow" Click="EditSetFontColorForegroundGreenYellowMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundBlueMenuItem" Header="Blue" Click="EditSetFontColorForegroundBlueMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundDarkBlueMenuItem" Header="Dark Blue" Click="EditSetFontColorForegroundDarkBlueMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundVioletMenuItem" Header="Violet" Click="EditSetFontColorForegroundVioletMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundDarkVioletMenuItem" Header="Dark Violet" Click="EditSetFontColorForegroundDarkVioletMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundGrayMenuItem" Header="Gray" Click="EditSetFontColorForegroundGrayMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorForegroundDarkGrayMenuItem" Header="Dark Gray" Click="EditSetFontColorForegroundDarkGrayMenuItem_Click">
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetFontColorBackgroundMenuItem" Header="_Background">
+                            <MenuItem x:Name="EditSetFontColorBackgroundBlackMenuItem" Header="Blac_k" Click="EditSetFontColorBackgroundBlackMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundWhiteMenuItem" Header="_White" Click="EditSetFontColorBackgroundWhiteMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundRedMenuItem" Header="Red" Click="EditSetFontColorBackgroundRedMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundDarkRedMenuItem" Header="Dark Red" Click="EditSetFontColorBackgroundDarkRedMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundGreenMenuItem" Header="Green" Click="EditSetFontColorBackgroundGreenMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundDarkGreenMenuItem" Header="Dark Green" Click="EditSetFontColorBackgroundDarkGreenMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundYellowMenuItem" Header="Yellow" Click="EditSetFontColorBackgroundYellowMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundGreenYellowMenuItem" Header="Dark Yellow" Click="EditSetFontColorBackgroundGreenYellowMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundBlueMenuItem" Header="Blue" Click="EditSetFontColorBackgroundBlueMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundDarkBlueMenuItem" Header="Dark Blue" Click="EditSetFontColorBackgroundDarkBlueMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundVioletMenuItem" Header="Violet" Click="EditSetFontColorBackgroundVioletMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundDarkVioletMenuItem" Header="Dark Violet" Click="EditSetFontColorBackgroundDarkVioletMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundGrayMenuItem" Header="Gray" Click="EditSetFontColorBackgroundGrayMenuItem_Click">
+                            </MenuItem>
+                            <MenuItem x:Name="EditSetFontColorBackgroundDarkGrayMenuItem" Header="Dark Gray" Click="EditSetFontColorBackgroundDarkGrayMenuItem_Click">
+                            </MenuItem>
+                        </MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="EditSetParagraphMenuItem" Header="Set _Paragraph">
+                    <MenuItem x:Name="EditSetParagraphAlignmentMenuItem" Header="_Alignment">
+                        <MenuItem x:Name="EditSetParagraphAlignmentLeftMenuItem" Header="_Left" InputGestureText="Ctrl+L" Click="EditSetParagraphAlignmentLeftMenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetParagraphAlignmentCenterMenuItem" Header="_Center" InputGestureText="Ctrl+E" Click="EditSetParagraphAlignmentCenterMenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetParagraphAlignmentRightMenuItem" Header="_Right" InputGestureText="Ctrl+R" Click="EditSetParagraphAlignmentRightMenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetParagraphAlignmentJustifiedMenuItem" Header="_Justified" InputGestureText="Ctrl+J" Click="EditSetParagraphAlignmentJustifiedMenuItem_Click">
+                        </MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="EditSetListMenuItem" Header="Set _List">
+                    <MenuItem x:Name="EditSetListStyleMenuItem" Header="_Style">
+                        <MenuItem x:Name="EditSetListStyleBulletsMenuItem" Header="_Bullets" InputGestureText="Ctrl+Shift+L" Click="EditSetListStyleBulletsMenuItem_Click">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetListStyleNumbersMenuItem" Header="_Numbers" Click="EditSetListStyleNumbersMenuItem_Click">
+                        </MenuItem>
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="ViewMenuItem" Header="_View">
+                <MenuItem x:Name="ViewToggleFullScreenModeMenuItem" Header="Toggle _Full Screen Mode" InputGestureText="F11" Click="ViewToggleFullScreenModeMenuItem_Click">
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="ViewSetLineMaxWidthToMenuItem" Header="Set Line Maximum _Width To...">
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo1000pxMenuItem" Header="_1: 1000 px" Click="ViewSetLineMaxWidthTo1000pxMenuItem_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo1250pxMenuItem" Header="_2: 1250 px" Click="ViewSetLineMaxWidthTo1250pxMenuItem_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo1500pxMenuItem" Header="_3: 1500 px" Click="ViewSetLineMaxWidthTo1500pxMenuItem_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo1750pxMenuItem" Header="_4: 1750 px" Click="ViewSetLineMaxWidthTo1750pxMenuItem_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo2000pxMenuItem" Header="_5: 2000 px" Click="ViewSetLineMaxWidthTo2000pxMenuItem_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo2250pxMenuItem" Header="_6: 2250 px" Click="ViewSetLineMaxWidthTo2250pxMenuItem_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo2500pxMenuItem" Header="_7: 2500 px" Click="ViewSetLineMaxWidthTo2500pxMenuItem_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo2750pxMenuItem" Header="_8: 2750 px" Click="ViewSetLineMaxWidthTo2750pxMenuItem_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="ViewSetLineMaxWidthTo3000pxMenuItem" Header="_9: 3000 px" Click="ViewSetLineMaxWidthTo3000pxMenuItem_Click">
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem x:Name="ViewSetLineMaxWidthToFullWidthMenuItem" Header="_Full Width" Click="ViewSetLineMaxWidthToFullWidthMenuItem_Click">
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="ThemesMenuItem" Header="_Themes">
+            </MenuItem>
+            <MenuItem x:Name="HelpMenuItem" Header="_Help">
+                <MenuItem x:Name="HelpAboutMenuItem" Header="_About" Click="HelpAboutMenuItem_Click">
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <RichTextBox x:Name="Editor" Margin="0" AcceptsTab="True" BorderThickness="0" Padding="40,40,40,40" FontFamily="Arial" FontSize="24" Block.LineHeight="32" VerticalScrollBarVisibility="Visible">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="TextIndent" Value="0" />
+                </Style>
+                <Style TargetType="{x:Type List}">
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+    </DockPanel>
+</Window>

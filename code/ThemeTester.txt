@@ -1,0 +1,152 @@
+HEADING 1
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum libero sed viverra ultricies. Etiam id orci ullamcorper, faucibus mauris nec, cursus enim. Morbi sed scelerisque erat. Pellentesque congue aliquam ante ac lobortis. Nulla ut sagittis ante. Pellentesque vitae facilisis velit. Fusce cursus magna sit amet diam bibendum, id mattis nunc pellentesque. Donec erat quam, interdum ac vestibulum non, interdum eu magna.
+
+HEADING 2
+
+Sed quis sem vel diam aliquam fermentum venenatis et eros. Sed vel cursus nisi, id vestibulum dolor. In elementum pretium dapibus. Praesent tincidunt risus id augue vestibulum faucibus a eget purus. Nam vitae urna mattis, congue massa vel, suscipit risus. Nunc eget tempus risus. Proin auctor mauris ut mauris lacinia placerat. Ut scelerisque et tortor nec tristique. Mauris hendrerit ipsum quis libero egestas, id tincidunt dolor dapibus. Sed scelerisque nisi eget quam euismod, fringilla ornare ligula hendrerit. Phasellus varius mattis tempor. Donec sed rutrum purus, non laoreet nibh. Mauris tempus risus vel neque pulvinar vestibulum. Aliquam sagittis sem a sapien luctus, et malesuada felis iaculis. Nullam non mi a arcu cursus fringilla quis et urna. Etiam varius nulla in fringilla laoreet.
+
+HEADING 3
+
+Vestibulum eget lacus vitae velit laoreet sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque vitae lectus eu orci volutpat tempus vel id nulla. Ut suscipit mauris dolor, eget lacinia ligula tincidunt et. Sed a tincidunt justo. Praesent quis neque et velit molestie dapibus. Praesent elementum felis eu urna volutpat, ut viverra mi sodales. Sed hendrerit, odio et varius gravida, mauris tortor vestibulum sem, sit amet iaculis dui velit eu tellus. Maecenas rhoncus placerat metus vitae pretium. Morbi lorem nisl, accumsan eget libero quis, porta porttitor eros. Cras placerat porta placerat.
+
+HEADING 4
+
+Nullam elementum, neque sed placerat imperdiet, est magna posuere arcu, non semper eros neque a sapien. Etiam vestibulum quam ut vehicula gravida. Cras ac ligula nec velit interdum rhoncus vitae vitae ante. Aliquam vel turpis sollicitudin eros faucibus tincidunt. Aenean viverra arcu et tortor tincidunt tincidunt. Vivamus pretium ex sit amet libero sagittis auctor et a sem. Phasellus semper, ante at condimentum tincidunt, mi nisl consectetur libero, sit amet mattis ipsum arcu vel diam. Maecenas volutpat ut dui a fringilla. Sed nec porta ligula. Proin ex ante, molestie at risus et, scelerisque ultricies metus. Aliquam ac turpis ut diam commodo euismod eu vitae turpis. Mauris sit amet sem odio. Etiam bibendum ex lacinia neque vestibulum ullamcorper.
+
+MONOSPACE
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum libero sed viverra ultricies. Etiam id orci ullamcorper, faucibus mauris nec, cursus enim. Morbi sed scelerisque erat. Pellentesque congue aliquam ante ac lobortis. Nulla ut sagittis ante. Pellentesque vitae facilisis velit. Fusce cursus magna sit amet diam bibendum, id mattis nunc pellentesque. Donec erat quam, interdum ac vestibulum non, interdum eu magna.
+
+public int Main(string[] args)
+{
+    Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+    var directoryPath = args[0];
+    var directoryNameTransformer = GetTransformer(args[1]);
+    var fileBodyTransformer = GetTransformer(args[2]);
+    var fileExtensionTransformer = GetTransformer(args[3]);
+
+    ProcessDirectory(directoryPath, directoryNameTransformer, fileBodyTransformer, fileExtensionTransformer);
+
+    return SuccessExitCode;
+}
+
+Sed quis sem vel diam aliquam fermentum venenatis et eros. Sed vel cursus nisi, id vestibulum dolor. In elementum pretium dapibus. Praesent tincidunt risus id augue vestibulum faucibus a eget purus. Nam vitae urna mattis, congue massa vel, suscipit risus. Nunc eget tempus risus. Proin auctor mauris ut mauris lacinia placerat. Ut scelerisque et tortor nec tristique. Mauris hendrerit ipsum quis libero egestas, id tincidunt dolor dapibus. Sed scelerisque nisi eget quam euismod, fringilla ornare ligula hendrerit. Phasellus varius mattis tempor. Donec sed rutrum purus, non laoreet nibh. Mauris tempus risus vel neque pulvinar vestibulum. Aliquam sagittis sem a sapien luctus, et malesuada felis iaculis. Nullam non mi a arcu cursus fringilla quis et urna. Etiam varius nulla in fringilla laoreet.
+
+WORD LIST
+
+aaron abduct accidental adjacent afghan after aint anaheim and anybody although allotted ambidextrous amend announced aqua arrangement ask aspin ate attitude authorised avery award axolotl baby baghdad banana batty beeped bent billow bizarre blood bottle bowwow boyfriend bubbly buzzing byproduct bystander byzantine cappuccino cattle cent cicero coccyx cooked copyright coyote croquet cumbersome cycle cylinder czech dabble daddy day divide don’t dr during dyke each ebb eek elephant emblem ensnare epiphany esquire etching equine farming feared filler fizzy fabric farming feared filler finger fjord fluid foggy foxxy frontal fungal gaggle geared gnome grubby happened happiness hazy hellish high hope hungry hyphen icy i’m impossible intolerant it’s i’ve jazzy jagged jenga jill joint just kangaroo kettle kitchen knack koala kooky laboratory landing left letter likely lilac little loco lolly lover’s luna luxurious lying master matter metres miss moonlight morph mr mrs ms mummy muster nasal neanderthal necessarily nine nonsense noon numb oar obfuscate occult oddly often ogre okay omission ozone parallel pear picnic pneumonic poppy porous pygmy quantum queen quince quota radii rafferty rattle reassure resist retiree rice roommate running sassafras savvy scent scuttle seismic shining shook sieve sister skink slump snide soup spire stay subject sultana svelte swiftly tallied tattooed taxed tension the theatre title totally trekked tsunami tutor tying vacuum variable vent vivid void vulnerable vying waffle wally warranted water weather whale withheld worry wurst wysiwyg wyvern xenon xmas yak yeah yip you're yuck zac zeal zigzag zing zodiac zoo
+
+NUMBERS AND FRACTIONS
+
+123g butter, softened
+456g (1½ cups) icing sugar
+78ml (¼ cup) gin
+9 tbsp tonic water
+10 tsp finely grated lemon rind
+1¾ x 987g madeira cakes
+1⅓ x 654g packets white chocolate melts
+1⅔ cup desiccated coconut
+1⅕ cup milk
+
+SYMBOLS
+
+{{curly}} (parenthesis) [square] #hash asterix* colon: semicolon; tilde~ exclamation! question? interrobang‽ caret^ degrees° <great&less> pipe|pipe
+‘singlequote’ 'straightquotes' “doublequotes” "doublestraight"
+person_name@email.com
+©copyright ­registered® trademarked™
+
+àäèéÈìòùçæñ<>°ª§^$£¤©|«»µ½⅓⅔¼¾⅕⅖⅗⅘‰~❶❷❸❹♠♣♥♦∞“”…%‰♀♂
+
+H₂O A₀₁₂₃₄₅₆₇₈₉B 10⁻⁴ A⁺⁻⁽⁰¹²³⁴⁵⁶⁷⁸⁹⁾ⁿB αβγδεηθλμπρ ≡≈±×÷⁄≤≥≠
+
+LINKS
+
+https://www.apple.com/
+https://www.google.com/
+https://www.microsoft.com/
+
+KERNING PAIRS
+
+Av Aw Ay Az Fa Fe Fi Fo Fu Kv Kw Ky Pa Pe Po Ta Te Ti To Tr Ts Tu Ty Va Ve Vo Vr Vu Vy Wa We Wr Wv Wy
+
+AC AT AVA AWA AYA AV AW AY AZ CT CYC FA FE FO KV KW KY LO LV LY NG OD PA PA PE PO TA TA TE TI TO TR TS TU TY UA VA VA VE VO VR VU VY WA WO WA WE WR WV WY YS
+
+PUNCTUATION
+
+A… A. A: A, A; A! A?
+B… B. B: B, B; B! B?
+C… C. C: C, C; C! C?
+D… D. D: D, D; D! D?
+E… E. E: E, E; E! E?
+F… F. F: F, F; F! F?
+G… G. G: G, G; G! G?
+H… H. H: H, H; H! H?
+I… I. I: I, I; I! I?
+J… J. J: J, J; J! J?
+K… K. K: K, K; K! K?
+L… L. L: L, L; L! L?
+M… M. M: M, M; M! M?
+N… N. N: N, N; N! N?
+O… O. O: O, O; O! O?
+P… P. P: P, P; P! P?
+Q… Q. Q: Q, Q; Q! Q?
+R… R. R: R, R; R! R?
+S… S. S: S, S; S! S?
+T… T. T: T, T; T! T?
+U… U. U: U, U; U! U?
+V… V. V: V, V; V! V?
+W… W. W: W, W; W! W?
+X… X. X: X, X; X! X?
+Y… Y. Y: Y, Y; Y! Y?
+Z… Z. Z: Z, Z; Z! Z?
+
+a… a. a: a, a; a! a?
+b… b. b: b, b; b! b?
+c… c. c: c, c; c! c?
+d… d. d: d, d; d! d?
+e… e. e: e, e; e! e?
+f… f. f: f, f; f! f?
+g… g. g: g, g; g! g?
+h… h. h: h, h; h! h?
+i… i. i: i, i; i! i?
+j… j. j: j, j; j! j?
+k… k. k: k, k; k! k?
+l… l. l: l, l; l! l?
+m… m. m: m, m; m! m?
+n… n. n: n, n; n! n?
+o… o. o: o, o; o! o?
+p… p. p: p, p; p! p?
+q… q. q: q, q; q! q?
+r… r. r: r, r; r! r?
+s… s. s: s, s; s! s?
+t… t. t: t, t; t! t?
+u… u. u: u, u; u! u?
+v… v. v: v, v; v! v?
+w… w. w: w, w; w! w?
+x… x. x: x, x; x! x?
+y… y. y: y, y; y! y?
+z… z. z: z, z; z! z?
+
+LOREM IPSUM
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum libero sed viverra ultricies. Etiam id orci ullamcorper, faucibus mauris nec, cursus enim. Morbi sed scelerisque erat. Pellentesque congue aliquam ante ac lobortis. Nulla ut sagittis ante. Pellentesque vitae facilisis velit. Fusce cursus magna sit amet diam bibendum, id mattis nunc pellentesque. Donec erat quam, interdum ac vestibulum non, interdum eu magna.
+
+Sed quis sem vel diam aliquam fermentum venenatis et eros. Sed vel cursus nisi, id vestibulum dolor. In elementum pretium dapibus. Praesent tincidunt risus id augue vestibulum faucibus a eget purus. Nam vitae urna mattis, congue massa vel, suscipit risus. Nunc eget tempus risus. Proin auctor mauris ut mauris lacinia placerat. Ut scelerisque et tortor nec tristique. Mauris hendrerit ipsum quis libero egestas, id tincidunt dolor dapibus. Sed scelerisque nisi eget quam euismod, fringilla ornare ligula hendrerit. Phasellus varius mattis tempor. Donec sed rutrum purus, non laoreet nibh. Mauris tempus risus vel neque pulvinar vestibulum. Aliquam sagittis sem a sapien luctus, et malesuada felis iaculis. Nullam non mi a arcu cursus fringilla quis et urna. Etiam varius nulla in fringilla laoreet.
+
+Vestibulum eget lacus vitae velit laoreet sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque vitae lectus eu orci volutpat tempus vel id nulla. Ut suscipit mauris dolor, eget lacinia ligula tincidunt et. Sed a tincidunt justo. Praesent quis neque et velit molestie dapibus. Praesent elementum felis eu urna volutpat, ut viverra mi sodales. Sed hendrerit, odio et varius gravida, mauris tortor vestibulum sem, sit amet iaculis dui velit eu tellus. Maecenas rhoncus placerat metus vitae pretium. Morbi lorem nisl, accumsan eget libero quis, porta porttitor eros. Cras placerat porta placerat.
+
+Nullam elementum, neque sed placerat imperdiet, est magna posuere arcu, non semper eros neque a sapien. Etiam vestibulum quam ut vehicula gravida. Cras ac ligula nec velit interdum rhoncus vitae vitae ante. Aliquam vel turpis sollicitudin eros faucibus tincidunt. Aenean viverra arcu et tortor tincidunt tincidunt. Vivamus pretium ex sit amet libero sagittis auctor et a sem. Phasellus semper, ante at condimentum tincidunt, mi nisl consectetur libero, sit amet mattis ipsum arcu vel diam. Maecenas volutpat ut dui a fringilla. Sed nec porta ligula. Proin ex ante, molestie at risus et, scelerisque ultricies metus. Aliquam ac turpis ut diam commodo euismod eu vitae turpis. Mauris sit amet sem odio. Etiam bibendum ex lacinia neque vestibulum ullamcorper.
+
+Maecenas nec mi velit. Ut lorem nisi, congue eu fringilla non, accumsan non nibh. Mauris elementum urna vel maximus porttitor. In sit amet dictum mauris. Nullam ultricies nisl ultrices nulla aliquet, nec convallis justo molestie. Etiam erat nulla, fringilla a faucibus vel, ullamcorper quis risus. Aenean pellentesque lorem eu nunc auctor, dictum condimentum sapien pellentesque. Praesent ultrices sit amet diam convallis porta. Duis convallis eu ipsum vel faucibus. Nulla nec congue est. Cras placerat lobortis tristique.
+
+Aenean consectetur quis est eu euismod. Proin faucibus elit sit amet lorem efficitur condimentum. Donec ante ante, maximus in porttitor eget, pellentesque quis orci. Nulla facilisi. Etiam sit amet sapien vitae est sagittis scelerisque. Vivamus nec mi eget odio molestie rutrum sed et felis. Duis pharetra bibendum massa ut rutrum. Nam id mollis tellus. Proin vitae mi metus. Mauris sed vulputate purus. In egestas purus velit, ac dictum quam mattis non. Donec faucibus dui nunc, vel vehicula libero feugiat id.
+
+Praesent est dui, cursus vitae fermentum id, venenatis ac massa. Donec eu eleifend nulla, id consequat lorem. Phasellus tristique justo ornare tellus eleifend, ut cursus ex blandit. Nullam non justo nec nibh egestas fermentum. Integer dolor magna, hendrerit eget porta et, feugiat vitae est. Etiam ipsum purus, mattis ac auctor in, aliquam ac neque. Duis mollis sapien non libero luctus, nec aliquet dui varius. Maecenas fringilla sapien quis pharetra mattis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque eu ultrices risus.
+
+Sed aliquet commodo justo, vel efficitur enim venenatis eu. Curabitur efficitur venenatis malesuada. Etiam pharetra, ex eget lacinia dignissim, lorem velit luctus enim, id maximus orci enim nec tortor. Nam quis ultrices lectus, vel molestie metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ornare non risus sed sollicitudin. Sed vulputate feugiat gravida.
+
+Proin ac pharetra tortor. Morbi porta ac elit sit amet condimentum. Mauris ut arcu finibus, venenatis ligula vel, dignissim risus. Nulla porttitor vestibulum magna, a sagittis felis facilisis ac. Vestibulum vestibulum est nec tempor pulvinar. Maecenas consequat magna vel lorem semper bibendum. Nullam iaculis velit scelerisque eros varius tristique. Fusce scelerisque consequat nulla et aliquam. Fusce tristique fringilla ligula. Aliquam porttitor dolor sit amet ligula ornare facilisis. Curabitur accumsan eros magna, non tristique arcu laoreet vitae. Cras tincidunt semper euismod. Praesent condimentum sit amet lacus ac rutrum. Maecenas fringilla malesuada laoreet. Maecenas rhoncus risus vel scelerisque efficitur. Suspendisse molestie consectetur enim, a blandit est ultrices vel.
+
+Phasellus luctus non purus ut efficitur. Praesent id tempus nisi, porta placerat ipsum. Quisque quam est, interdum at felis sit amet, commodo pulvinar lectus. Vestibulum varius orci quis aliquam vulputate. Morbi orci eros, pellentesque posuere malesuada eget, molestie et nisi. Nunc nec euismod elit. Curabitur pellentesque, felis eget fringilla laoreet, purus tortor rhoncus lorem, vitae posuere dolor dolor non dui.
