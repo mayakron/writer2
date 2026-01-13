@@ -1,7 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -24,7 +26,7 @@ namespace Writer2
             {
                 this.ThemesMenuItem.Items.Add(MenuItemUtility.CreateMenuItem("Default", ThemesThemeMenuItem_Click, null, null));
 
-                foreach (var filePath in Directory.GetFiles(Theme.ThemesDirectoryPath, "*.json", SearchOption.TopDirectoryOnly).OrderBy(x => x))
+                foreach (var filePath in Directory.GetFiles(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), Theme.ThemesDirectoryPath), "*.json", SearchOption.TopDirectoryOnly).OrderBy(x => x))
                 {
                     this.ThemesMenuItem.Items.Add(MenuItemUtility.CreateMenuItem(Path.GetFileNameWithoutExtension(filePath), ThemesThemeMenuItem_Click, null, filePath));
                 }
@@ -39,15 +41,65 @@ namespace Writer2
             var commandFileSave = new RoutedCommand(); commandFileSave.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(commandFileSave, this.FileSaveMenuItem_Click));
             var commandFileSaveAs = new RoutedCommand(); commandFileSaveAs.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control | ModifierKeys.Shift)); CommandBindings.Add(new CommandBinding(commandFileSaveAs, this.FileSaveAsMenuItem_Click));
 
-            var commandEditSetFontStyleCode = new RoutedCommand(); commandEditSetFontStyleCode.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleCode, this.EditSetFontStyleCodeMenuItem_Click));
-            var commandEditSetFontStyleDefault = new RoutedCommand(); commandEditSetFontStyleDefault.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleDefault, this.EditSetFontStyleDefaultMenuItem_Click));
+            var commandEditPasteAsText = new RoutedCommand(); commandEditPasteAsText.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(commandEditPasteAsText, this.EditPasteAsTextMenuItem_Click));
 
+            var commandEditSetFontStyleStrikethrough = new RoutedCommand(); commandEditSetFontStyleStrikethrough.InputGestures.Add(new KeyGesture(Key.K, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleStrikethrough, this.EditSetFontStyleStrikethroughMenuItem_Click));
+
+            var commandEditSetFontStyleDefault = new RoutedCommand(); commandEditSetFontStyleDefault.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleDefault, this.EditSetFontStyleDefaultMenuItem_Click));
             var commandEditSetFontStyleHeading1 = new RoutedCommand(); commandEditSetFontStyleHeading1.InputGestures.Add(new KeyGesture(Key.D1, ModifierKeys.Control | ModifierKeys.Shift)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleHeading1, this.EditSetFontStyleHeading1MenuItem_Click));
             var commandEditSetFontStyleHeading2 = new RoutedCommand(); commandEditSetFontStyleHeading2.InputGestures.Add(new KeyGesture(Key.D2, ModifierKeys.Control | ModifierKeys.Shift)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleHeading2, this.EditSetFontStyleHeading2MenuItem_Click));
             var commandEditSetFontStyleHeading3 = new RoutedCommand(); commandEditSetFontStyleHeading3.InputGestures.Add(new KeyGesture(Key.D3, ModifierKeys.Control | ModifierKeys.Shift)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleHeading3, this.EditSetFontStyleHeading3MenuItem_Click));
             var commandEditSetFontStyleHeading4 = new RoutedCommand(); commandEditSetFontStyleHeading4.InputGestures.Add(new KeyGesture(Key.D4, ModifierKeys.Control | ModifierKeys.Shift)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleHeading4, this.EditSetFontStyleHeading4MenuItem_Click));
+            var commandEditSetFontStyleCode = new RoutedCommand(); commandEditSetFontStyleCode.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(commandEditSetFontStyleCode, this.EditSetFontStyleCodeMenuItem_Click));
 
             var commandViewToggleFullScreenMode = new RoutedCommand(); commandViewToggleFullScreenMode.InputGestures.Add(new KeyGesture(Key.F11, ModifierKeys.None)); CommandBindings.Add(new CommandBinding(commandViewToggleFullScreenMode, this.ViewToggleFullScreenModeMenuItem_Click));
+        }
+
+        private void CustomEditingCommandsToogleTextDecoration(TextDecorationCollection textDecorationCollection, TextDecorationLocation textDecorationLocation)
+        {
+            TextRange editorSelection = this.Editor.Selection;
+
+            object textDecorationPropertyValue = editorSelection.GetPropertyValue(Inline.TextDecorationsProperty);
+
+            TextDecorationCollection textDecorations = new TextDecorationCollection();
+
+            if ((textDecorationPropertyValue != DependencyProperty.UnsetValue) && (textDecorationPropertyValue is TextDecorationCollection existingTextDecorationPropertyValue))
+            {
+                textDecorations.Add(existingTextDecorationPropertyValue);
+            }
+
+            bool hasTextDecoration = false;
+
+            foreach (var textDecoration in textDecorations)
+            {
+                if (textDecoration.Location == textDecorationLocation)
+                {
+                    hasTextDecoration = true;
+
+                    break;
+                }
+            }
+
+            if (hasTextDecoration)
+            {
+                TextDecorationCollection filteredTextDecorations = new TextDecorationCollection();
+
+                foreach (var textDecoration in textDecorations)
+                {
+                    if (textDecoration.Location != textDecorationLocation)
+                    {
+                        filteredTextDecorations.Add(textDecoration);
+                    }
+                }
+
+                editorSelection.ApplyPropertyValue(Inline.TextDecorationsProperty, filteredTextDecorations);
+            }
+            else
+            {
+                textDecorations.Add(textDecorationCollection);
+
+                editorSelection.ApplyPropertyValue(Inline.TextDecorationsProperty, textDecorations);
+            }
         }
 
         private void EditCopyMenuItem_Click(object sender, RoutedEventArgs e)
@@ -63,6 +115,14 @@ namespace Writer2
         private void EditDeleteMenuItem_Click(object sender, RoutedEventArgs e)
         {
             EditingCommands.Delete.Execute(null, this.Editor);
+        }
+
+        private void EditPasteAsTextMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                this.Editor.CaretPosition.InsertTextInRun(Clipboard.GetText(TextDataFormat.Text));
+            }
         }
 
         private void EditPasteMenuItem_Click(object sender, RoutedEventArgs e)
@@ -362,6 +422,11 @@ namespace Writer2
             EditingCommands.ToggleItalic.Execute(null, this.Editor);
         }
 
+        private void EditSetFontStyleStrikethroughMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CustomEditingCommandsToogleTextDecoration(TextDecorations.Strikethrough, TextDecorationLocation.Strikethrough);
+        }
+
         private void EditSetFontStyleUnderlineMenuItem_Click(object sender, RoutedEventArgs e)
         {
             EditingCommands.ToggleUnderline.Execute(null, this.Editor);
@@ -465,7 +530,7 @@ namespace Writer2
 
                     this.EditorFilePath = dialog.FileName;
 
-                    this.Window_SetTitle($"Last saved at {DateTime.Now:HH:mm:ss}");
+                    this.Window_SetTitle($"Last saved at {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                 }
                 catch (Exception ex)
                 {
@@ -485,7 +550,7 @@ namespace Writer2
                     range.Save(fileStream, DataFormats.Rtf);
                 }
 
-                this.Window_SetTitle($"Last saved at {DateTime.Now:HH:mm:ss}");
+                this.Window_SetTitle($"Last saved at {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             }
             catch (Exception ex)
             {
@@ -496,6 +561,11 @@ namespace Writer2
         private void HelpAboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Writer2 is a distraction free writing application.", $"Writer2 (v. {App.Version})", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void HelpProjectPageMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/mayakron/writer2");
         }
 
         private void ThemesThemeMenuItem_Click(object sender, RoutedEventArgs e)
@@ -531,19 +601,6 @@ namespace Writer2
             Theme.Load(filePath);
 
             this.Window_SetTheme();
-        }
-
-        private void Window_SetTheme()
-        {
-            this.Editor.FontFamily = new FontFamily(Theme.Instance.EditorDefaultFontFamily);
-            this.Editor.FontSize = Theme.Instance.EditorDefaultFontSize;
-            this.Editor.FontWeight = Theme.Instance.EditorDefaultFontWeight;
-            this.Editor.FontStyle = Theme.Instance.EditorDefaultFontStyle;
-            this.Editor.FontStretch = Theme.Instance.EditorDefaultFontStretch;
-            this.Editor.Background = Theme.Instance.EditorDefaultBackgroundColor;
-            this.Editor.Foreground = Theme.Instance.EditorDefaultForegroundColor;
-            this.Editor.SetValue(Block.LineHeightProperty, Theme.Instance.EditorDefaultLineHeight);
-            this.Editor.SetValue(Block.TextAlignmentProperty, Theme.Instance.EditorDefaultTextAlignment);
         }
 
         private void ViewSetLineMaxWidthTo1000pxMenuItem_Click(object sender, RoutedEventArgs e)
@@ -644,6 +701,19 @@ namespace Writer2
             var horizontalPadding = Math.Max(40, Math.Round(0.5D * (this.ActualWidth - (double)EditorMaxLineWidth)));
 
             this.Editor.Padding = new Thickness(horizontalPadding, this.Editor.Padding.Top, horizontalPadding, this.Editor.Padding.Bottom);
+        }
+
+        private void Window_SetTheme()
+        {
+            this.Editor.FontFamily = new FontFamily(Theme.Instance.EditorDefaultFontFamily);
+            this.Editor.FontSize = Theme.Instance.EditorDefaultFontSize;
+            this.Editor.FontWeight = Theme.Instance.EditorDefaultFontWeight;
+            this.Editor.FontStyle = Theme.Instance.EditorDefaultFontStyle;
+            this.Editor.FontStretch = Theme.Instance.EditorDefaultFontStretch;
+            this.Editor.Background = Theme.Instance.EditorDefaultBackgroundColor;
+            this.Editor.Foreground = Theme.Instance.EditorDefaultForegroundColor;
+            this.Editor.SetValue(Block.LineHeightProperty, Theme.Instance.EditorDefaultLineHeight);
+            this.Editor.SetValue(Block.TextAlignmentProperty, Theme.Instance.EditorDefaultTextAlignment);
         }
 
         private void Window_SetTitle(string message)
