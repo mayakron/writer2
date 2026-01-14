@@ -121,6 +121,8 @@ namespace Writer2
         {
             if (Clipboard.ContainsText(TextDataFormat.Text))
             {
+                this.Editor.Selection.Text = string.Empty;
+
                 this.Editor.CaretPosition.InsertTextInRun(Clipboard.GetText(TextDataFormat.Text));
             }
         }
