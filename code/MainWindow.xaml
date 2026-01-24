@@ -133,6 +133,12 @@
                         <MenuItem x:Name="EditSetParagraphAlignmentJustifiedMenuItem" Header="_Justified" InputGestureText="Ctrl+J" Click="EditSetParagraphAlignmentJustifiedMenuItem_Click">
                         </MenuItem>
                     </MenuItem>
+                    <MenuItem x:Name="EditSetParagraphIndentationMenuItem" Header="_Indentation">
+                        <MenuItem x:Name="EditSetParagraphIndentationIncreaseMenuItem" Header="_Increase" InputGestureText="Ctrl+T">
+                        </MenuItem>
+                        <MenuItem x:Name="EditSetParagraphIndentationDecreaseMenuItem" Header="_Decrease" InputGestureText="Ctrl+Shift+T">
+                        </MenuItem>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="EditSetListMenuItem" Header="Set _List">
                     <MenuItem x:Name="EditSetListStyleMenuItem" Header="_Style">
