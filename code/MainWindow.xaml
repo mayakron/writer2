@@ -1,6 +1,6 @@
 ﻿<Window x:Class="Writer2.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" Title="Writer2" Height="788" Width="1024" WindowStartupLocation="CenterScreen" Icon="Writer2.ico" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" >
     <DockPanel Margin="0" LastChildFill="False">
-        <Menu Padding="4" DockPanel.Dock="Top">
+        <Menu x:Name="MainMenu" Padding="4" DockPanel.Dock="Top">
             <MenuItem x:Name="FileMenuItem" Header="_File">
                 <MenuItem x:Name="FileNewMenuItem" Header="_New" InputGestureText="Ctrl+N" Click="FileNewMenuItem_Click">
                 </MenuItem>
@@ -134,9 +134,9 @@
                         </MenuItem>
                     </MenuItem>
                     <MenuItem x:Name="EditSetParagraphIndentationMenuItem" Header="_Indentation">
-                        <MenuItem x:Name="EditSetParagraphIndentationIncreaseMenuItem" Header="_Increase" InputGestureText="Ctrl+T">
+                        <MenuItem x:Name="EditSetParagraphIndentationIncreaseMenuItem" Header="_Increase" InputGestureText="Ctrl+T" Click="EditSetParagraphIndentationIncreaseMenuItem_Click">
                         </MenuItem>
-                        <MenuItem x:Name="EditSetParagraphIndentationDecreaseMenuItem" Header="_Decrease" InputGestureText="Ctrl+Shift+T">
+                        <MenuItem x:Name="EditSetParagraphIndentationDecreaseMenuItem" Header="_Decrease" InputGestureText="Ctrl+Shift+T" Click="EditSetParagraphIndentationDecreaseMenuItem_Click">
                         </MenuItem>
                     </MenuItem>
                 </MenuItem>

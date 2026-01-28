@@ -18,15 +18,23 @@ namespace Writer2
 
         private int EditorMaxLineWidth = 0;
 
+        private WindowStyle nonFullScreenWindowStyle = WindowStyle.SingleBorderWindow;
+
+        private WindowState nonFullScreenWindowState = WindowState.Normal;
+
+        private bool IsNewFile = true;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            if (Directory.Exists(Theme.ThemesDirectoryPath))
+            string themesDirectoryPath = Path.Combine(App.StartupDirectoryPath, Theme.ThemesDirectoryPath);
+
+            if (Directory.Exists(themesDirectoryPath))
             {
                 this.ThemesMenuItem.Items.Add(MenuItemUtility.CreateMenuItem("Default", ThemesThemeMenuItem_Click, null, null));
 
-                foreach (var filePath in Directory.GetFiles(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), Theme.ThemesDirectoryPath), "*.json", SearchOption.TopDirectoryOnly).OrderBy(x => x))
+                foreach (var filePath in Directory.GetFiles(themesDirectoryPath, "*.json", SearchOption.TopDirectoryOnly).OrderBy(x => x))
                 {
                     this.ThemesMenuItem.Items.Add(MenuItemUtility.CreateMenuItem(Path.GetFileNameWithoutExtension(filePath), ThemesThemeMenuItem_Click, null, filePath));
                 }
@@ -65,7 +73,10 @@ namespace Writer2
 
             if ((textDecorationPropertyValue != DependencyProperty.UnsetValue) && (textDecorationPropertyValue is TextDecorationCollection existingTextDecorationPropertyValue))
             {
-                textDecorations.Add(existingTextDecorationPropertyValue);
+                foreach (var textDecoration in existingTextDecorationPropertyValue)
+                {
+                    textDecorations.Add(textDecoration);
+                }
             }
 
             bool hasTextDecoration = false;
@@ -121,9 +132,7 @@ namespace Writer2
         {
             if (Clipboard.ContainsText(TextDataFormat.Text))
             {
-                this.Editor.Selection.Text = string.Empty;
-
-                this.Editor.CaretPosition.InsertTextInRun(Clipboard.GetText(TextDataFormat.Text));
+                this.Editor.Selection.Text = Clipboard.GetText(TextDataFormat.Text);
             }
         }
 
@@ -464,6 +473,16 @@ namespace Writer2
             EditingCommands.AlignRight.Execute(null, this.Editor);
         }
 
+        private void EditSetParagraphIndentationDecreaseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EditingCommands.DecreaseIndentation.Execute(null, this.Editor);
+        }
+
+        private void EditSetParagraphIndentationIncreaseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EditingCommands.IncreaseIndentation.Execute(null, this.Editor);
+        }
+
         private void EditUndoMenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Editor.Undo();
@@ -476,6 +495,8 @@ namespace Writer2
 
         private void FileNewMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            this.IsNewFile = true;
+
             this.EditorFilePath = Path.Combine(App.StartupDirectoryPath, $"{Guid.NewGuid():N}.rtf");
 
             this.Editor.Document.Blocks.Clear();
@@ -502,6 +523,8 @@ namespace Writer2
                     }
 
                     this.EditorFilePath = dialog.FileName;
+
+                    this.IsNewFile = false;
 
                     this.Window_SetTitle(null);
                 }
@@ -532,6 +555,8 @@ namespace Writer2
 
                     this.EditorFilePath = dialog.FileName;
 
+                    this.IsNewFile = false;
+
                     this.Window_SetTitle($"Last saved at {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                 }
                 catch (Exception ex)
@@ -543,6 +568,13 @@ namespace Writer2
 
         private void FileSaveMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            if (this.IsNewFile)
+            {
+                this.FileSaveAsMenuItem_Click(sender, e);
+
+                return;
+            }
+
             try
             {
                 var range = new TextRange(this.Editor.Document.ContentStart, this.Editor.Document.ContentEnd);
@@ -679,12 +711,20 @@ namespace Writer2
         {
             if (this.WindowStyle != WindowStyle.None)
             {
+                this.nonFullScreenWindowStyle = this.WindowStyle;
+                this.nonFullScreenWindowState = this.WindowState;
+
                 this.WindowState = WindowState.Maximized;
                 this.WindowStyle = WindowStyle.None;
+
+                this.MainMenu.Visibility = Visibility.Collapsed;
             }
             else
             {
-                this.WindowStyle = WindowStyle.SingleBorderWindow;
+                this.WindowStyle = this.nonFullScreenWindowStyle;
+                this.WindowState = this.nonFullScreenWindowState;
+
+                this.MainMenu.Visibility = Visibility.Visible;
             }
         }
 
