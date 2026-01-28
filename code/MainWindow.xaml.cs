@@ -121,9 +121,18 @@ namespace Writer2
         {
             if (Clipboard.ContainsText(TextDataFormat.Text))
             {
-                this.Editor.Selection.Text = string.Empty;
+                this.Editor.BeginChange();
 
-                this.Editor.CaretPosition.InsertTextInRun(Clipboard.GetText(TextDataFormat.Text));
+                try
+                {
+                    this.Editor.Selection.Text = string.Empty;
+
+                    this.Editor.CaretPosition.InsertTextInRun(Clipboard.GetText(TextDataFormat.Text));
+                }
+                finally
+                {
+                    this.Editor.EndChange();
+                }
             }
         }
 
@@ -464,6 +473,16 @@ namespace Writer2
             EditingCommands.AlignRight.Execute(null, this.Editor);
         }
 
+        private void EditSetParagraphIndentationDecreaseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EditingCommands.DecreaseIndentation.Execute(null, this.Editor);
+        }
+
+        private void EditSetParagraphIndentationIncreaseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EditingCommands.IncreaseIndentation.Execute(null, this.Editor);
+        }
+
         private void EditUndoMenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Editor.Undo();
@@ -684,6 +703,7 @@ namespace Writer2
             }
             else
             {
+                this.WindowState = WindowState.Normal;
                 this.WindowStyle = WindowStyle.SingleBorderWindow;
             }
         }
